@@ -1,0 +1,110 @@
+{
+    "layer":"bottom",
+    "position": "bottom",
+    "height": 30,
+    "spacing": 4,
+    "modules-left": [
+        "custom/apps",
+        "sway/mode",
+        "custom/chrome",
+        "custom/kitty",
+        "wlr/taskbar"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "custom/pacman",
+        "temperature",
+        "bluetooth",
+        "clock",
+        "tray",
+        "custom/power"
+    ],
+    "temperature": {
+        // "thermal-zone": 2,
+        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        // "format-critical": "{temperatureC}°C {icon}",
+        "format": "{temperatureC}°C"
+    },
+    "custom/apps": {
+        "format": "",
+        "on-click": "walker"
+    },
+    "custom/pacman": {
+        "format": "{} {icon}",
+        "return-type": "json",
+        "format-icons": {
+          "pending-updates": " ",
+          "updated": " "
+        },
+        "exec-if": "which waybar-updates",
+        "exec": "waybar-updates",
+        "on-click": "kitty ~/scripts/update.sh"
+    },
+    "sway/mode": {
+        "format":"<span style=\"italic\">[]</span>"
+    },
+    "wlr/taskbar": {
+        "format": "{icon}",
+        "icon-size": 18,
+        "tooltip-format": "{title}",
+        "on-click": "activate",
+        "on-click-middle": "close"
+    },
+    "hyprland/window":{
+        "rewrite": {
+            "(.*) - Google Chrome" : "Google Chrome",
+            "(.*) - Code - OSS" : "Visual Code"
+        },
+        "separate-outputs": true
+    },
+    "bluetooth": {
+        "format": "",
+        "format-connected-battery": " {device_battery_percent}%",
+        "on-click": "blueman-manager",
+        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    },
+    "custom/power": {
+        "format": "",
+        "on-click": "wlogout",
+        "tooltip": false
+    },
+    "clock": {
+        "format": "{:%H:%M:%S} ",
+        "interval": 1,
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+		    "mode"          : "month",
+		    "on-scroll"     : 1,
+		    "format": {
+			    "months":     "<span color='#ffead3'><b>{}</b></span>",
+			    "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+			    "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+			    "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+	    	}
+        },
+        "actions": {
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
+    },
+    "custom/chrome": {
+        "format": "",
+        "on-click": "flatpak run com.google.Chrome",
+        "tooltip": false
+    },
+    "custom/kitty": {
+        "format": "",
+        "on-click": "kitty",
+        "tooltip": false
+    },
+    "tray": {
+        "spacing": 10,
+        "icon-size": 21
+    }
+}

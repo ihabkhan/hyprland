@@ -1,0 +1,7 @@
+#!/bin/sh
+# Xsetup - run as root before the login dialog appears
+
+TOUCHSCREEN_ID=$( xinput | grep 'NVTK0603' | head -n 1 | awk '{print $5}' | sed 's/id=//g' | grep [0-9] )
+
+xinput set-prop $TOUCHSCREEN_ID "Coordinate Transformation Matrix" 0 -1 1 1 0 0 0 0 1
+xrandr -o left
